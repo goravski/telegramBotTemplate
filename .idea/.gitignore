@@ -14,3 +14,4 @@ dispatcher/target/
 **/.gitignore/
 .xml
 .class
+/$PROJECT_FILE$

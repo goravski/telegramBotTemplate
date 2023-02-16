@@ -1,0 +1,10 @@
+package org.goravski.controller;
+
+public class RabbitQueue {
+    public static final String DOC_MESSAGE_UPDATE = "doc_message_update";
+    public static final String PHOTO_MESSAGE_UPDATE = "photo_message_update";
+    public static final String TEXT_MESSAGE_UPDATE = "text_message_update";
+    public static final String ANSWER_MESSAGE = "answer_message";
+    public static final String AUDIO_MESSAGE_UPDATE = "audio_message" ;
+    public static final String ENTITY_MESSAGE_UPDATE = "entity_message";
+}

@@ -1,20 +1,33 @@
 package org.goravski.controller;
 
+import jakarta.annotation.PostConstruct;
 import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-@Slf4j
+@Log4j
 @Component
 public class TelegramBot extends TelegramLongPollingBot {
     @Value("${bot.name}")
     String botName;
     @Value("${bot.token}")
     String botToken;
+
+    public TelegramBot(UpdateController controller) {
+        this.controller = controller;
+    }
+
+    UpdateController controller;
+
+    @PostConstruct
+    public void init (){
+        controller.registerBot(this);
+    }
 
     @Override
     public String getBotUsername() {
@@ -29,14 +42,17 @@ public class TelegramBot extends TelegramLongPollingBot {
     @Override
     @SneakyThrows
     public void onUpdateReceived(Update update) {
+        controller.processUpdate(update);
 
-        String text = update.getMessage().getText();
-        Long chatId = update.getMessage().getChatId();
-        execute(SendMessage.builder()
-                .chatId(chatId.toString())
-                .text(text)
-                .build());
-        System.out.println(text);
+    }
 
+    public void sendAnswerMessage(SendMessage message) {
+        if (message != null) {
+            try {
+                execute(message);
+            } catch (TelegramApiException e) {
+                log.error(e);
+            }
+        }
     }
 }

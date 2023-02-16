@@ -1,7 +1,7 @@
 package org.goravski;
 
 import jakarta.annotation.PostConstruct;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j;
 import org.goravski.controller.TelegramBot;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,7 +11,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 @SpringBootApplication
-@Slf4j
+@Log4j
 public class TelegramBotApplication {
     private final ApplicationContext context;
 

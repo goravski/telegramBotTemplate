@@ -1,0 +1,6 @@
+/dispatcher/target/
+/logs/dispatcher.log/
+/.idea/
+.xml
+.class
+/$PROJECT_FILE$

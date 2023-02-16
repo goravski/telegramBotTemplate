@@ -1,4 +1,4 @@
-package org.goravski.controller;
+package org.goravski.model;
 
 public class RabbitQueue {
     public static final String DOC_MESSAGE_UPDATE = "doc_message_update";

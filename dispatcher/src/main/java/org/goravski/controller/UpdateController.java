@@ -9,7 +9,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-import static org.goravski.controller.RabbitQueue.PHOTO_MESSAGE_UPDATE;
+import static org.goravski.model.RabbitQueue.*;
 
 @Log4j
 @Component
@@ -40,14 +40,14 @@ public class UpdateController {
     }
 
     private void processAudioMessage(Update update) {
-        producer.produce(RabbitQueue.AUDIO_MESSAGE_UPDATE, update);
+        producer.produce(AUDIO_MESSAGE_UPDATE, update);
         sendObjectReceivedView(update);
     }
 
 
 
     private void processDocMessage(Update update) {
-        producer.produce(RabbitQueue.DOC_MESSAGE_UPDATE, update);
+        producer.produce(DOC_MESSAGE_UPDATE, update);
         sendObjectReceivedView(update);
     }
 
@@ -57,12 +57,12 @@ public class UpdateController {
     }
 
     private void processMessageWithEntities(Update update) {
-        producer.produce(RabbitQueue.ENTITY_MESSAGE_UPDATE, update);
+        producer.produce(ENTITY_MESSAGE_UPDATE, update);
         sendObjectReceivedView(update);
     }
 
     private void processMessageWithText(Update update) {
-        producer.produce(RabbitQueue.TEXT_MESSAGE_UPDATE, update);
+        producer.produce(TEXT_MESSAGE_UPDATE, update);
         sendObjectReceivedView(update);
     }
 
